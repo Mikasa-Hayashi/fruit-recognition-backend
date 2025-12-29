@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+router = APIRouter(prefix='/meta')
 
-@router.get('/meta')
+@router.get('/')
 def get_meta():
     return {
         'model_version': '1',

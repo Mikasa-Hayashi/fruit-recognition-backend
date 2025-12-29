@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-router = APIRouter()
+router = APIRouter(prefix='/fruits')
 
-@router.get('/fruits')
+@router.get('/')
 async def get_fruits():
     return {'fruits': ['apple', 'banana', 'cherry']}
