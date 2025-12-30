@@ -1,7 +1,7 @@
 from sqlmodel import Field
 from datetime import datetime, timezone
 from typing import Optional
-from src.schemas.fruits import FruitBase
+from schemas.fruits import FruitBase
 
 class Fruit(FruitBase, table=True):
     __tablename__ = 'fruits'
