@@ -1,15 +1,22 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlmodel import SQLModel
-from .constants import DATABASE_URL
+from typing import AsyncGenerator, Annotated
+from config import settings
+from fastapi import Depends
 
 engine = create_async_engine(
-    DATABASE_URL,
+    settings.DATABASE_URL,
 )
 
 AsyncSessionLocal = async_sessionmaker(
-    engine, expire_on_commit=False
+    engine,
+    expire_on_commit=False,
+    class_=AsyncSession,
 )
 
-async def get_session():
+async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionLocal() as session:
         yield session
+
+
+SessionDep = Annotated[AsyncSession, Depends(get_session)]
