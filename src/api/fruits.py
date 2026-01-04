@@ -1,9 +1,10 @@
 from datetime import datetime, timezone
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from database import SessionDep
 from schemas.fruits import FruitCreate, FruitRead, FruitUpdate
 from sqlmodel import select
 from models.fruits import Fruit
+from core.security import verify_token
 
 router = APIRouter(prefix='/fruits')
 
@@ -28,7 +29,11 @@ async def read_fruit(fruit_name: str, session: SessionDep):
 
 
 @router.post('/')
-async def create_fruit(fruit: FruitCreate, session: SessionDep):
+async def create_fruit(
+    fruit: FruitCreate, 
+    session: SessionDep,
+    token_verified: str = Depends(verify_token)
+):
     fruit_db = Fruit.model_validate(fruit)
     session.add(fruit_db)
     await session.commit()
@@ -37,7 +42,12 @@ async def create_fruit(fruit: FruitCreate, session: SessionDep):
 
 
 @router.patch('/{fruit_name}')
-async def update_fruit(fruit_name: str, fruit: FruitUpdate, session: SessionDep):
+async def update_fruit(
+    fruit_name: str, fruit: 
+    FruitUpdate, 
+    session: SessionDep,
+    token_verified: str = Depends(verify_token)
+):
     fruit_db = session.get(Fruit, fruit_name)
 
     if not fruit_db:
@@ -55,7 +65,11 @@ async def update_fruit(fruit_name: str, fruit: FruitUpdate, session: SessionDep)
 
 
 @router.delete('/{fruit_name}')
-async def delete_fruit(fruit_name: str, session: SessionDep):
+async def delete_fruit(
+    fruit_name: str,
+    session: SessionDep, 
+    token_verified: str = Depends(verify_token)
+):
     fruit_db = session.get(Fruit, fruit_name)
 
     if not fruit_db:
