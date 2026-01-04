@@ -1,7 +1,7 @@
 from inference.base import BaseDetector
 from inference.schemas import InferenceResult, Detection, BBox
 from inference.exceptions import ModelLoadError
-from config import settings
+from core.config import settings
 
 import cv2
 import numpy as np
