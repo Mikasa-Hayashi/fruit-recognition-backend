@@ -9,20 +9,20 @@ router = APIRouter(prefix='/inference', tags=['inference'])
 
 @router.post('/predictions')
 async def create_predictions(
-    file: UploadFile = File(...), 
+    image: UploadFile = File(...), 
     detector: BaseDetector = Depends(get_detector)
 ):
-    image_bytes = await file.read()
+    image_bytes = await image.read()
     predictions = await detector.predict(image_bytes)
     return predictions
 
 
 @router.post('/classify')
 async def classify_image(
-    file: UploadFile = File(...), 
+    image: UploadFile = File(...), 
     detector: BaseDetector = Depends(get_detector),
 ):
-    image_bytes = await file.read()
+    image_bytes = await image.read()
     predictions = await detector.predict(image_bytes)
 
     if not predictions.detections:
@@ -35,10 +35,10 @@ async def classify_image(
 @router.post('/fruit')
 async def detect_fruit(
     session: SessionDep,
-    file: UploadFile = File(...), 
+    image: UploadFile = File(...), 
     detector: BaseDetector = Depends(get_detector)
 ):
-    image_bytes = await file.read()
+    image_bytes = await image.read()
     predictions = await detector.predict(image_bytes)
 
     if not predictions.detections:
