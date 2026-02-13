@@ -4,11 +4,8 @@ from typing import Optional
 
 
 class FruitBase(SQLModel):
-    name: str = Field(index=True, unique=True)
-    display_name: str
-    description: str
-    calories: int
-    sugar_content: float
+    slug: str = Field(index=True, unique=True)
+    scientific_name: str    
     image_url: str = Field(
         default='assets/default_fruit_image.png'
     )
@@ -19,11 +16,8 @@ class FruitCreate(FruitBase):
 
 
 class FruitUpdate(SQLModel):
-    name: Optional[str] = None
-    display_name: Optional[str] = None
-    description: Optional[str] = None
-    calories: Optional[int] = None
-    sugar_content: Optional[float] = None
+    slug: Optional[str] = None
+    scientific_name: Optional[str] = None
     image_url: Optional[str] = None
 
 

@@ -4,7 +4,15 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from sqlmodel import SQLModel
+
 from src.models.fruits import Fruit
+from src.models.fruit_translations import FruitTranslation
+from src.models.nutrients import Nutrient
+from src.models.nutrient_translations import NutrientTranslation
+from src.models.fruit_nutrient_link import FruitNutrientLink
+from src.models.units import Unit
+from src.models.unit_translations import UnitTranslation
+
 
 from alembic import context
 
