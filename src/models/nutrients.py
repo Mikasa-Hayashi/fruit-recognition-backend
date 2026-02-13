@@ -2,11 +2,8 @@ from typing import Optional, List
 from datetime import datetime, timezone
 from sqlmodel import Field, Relationship
 
-# from models.fruits import Fruit
-# from models.nutrient_translations import NutrientTranslation
-# from models.units import Unit
-from ..schemas.nutrients import NutrientBase
-from .fruit_nutrient_link import FruitNutrientLink
+from schemas.nutrients import NutrientBase
+from models.fruit_nutrient_link import FruitNutrientLink
 
 
 class Nutrient(NutrientBase, table=True):

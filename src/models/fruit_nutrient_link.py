@@ -1,5 +1,5 @@
 from sqlmodel import Field
-from ..schemas.fruit_nutrient_link import FruitNutrientLinkBase
+from schemas.fruit_nutrient_link import FruitNutrientLinkBase
 
 
 class FruitNutrientLink(FruitNutrientLinkBase, table=True):

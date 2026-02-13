@@ -2,8 +2,8 @@ from typing import List
 from sqlmodel import Field, Relationship
 from datetime import datetime, timezone
 from typing import Optional
-from .fruit_nutrient_link import FruitNutrientLink
-from ..schemas.fruits import FruitBase
+from models.fruit_nutrient_link import FruitNutrientLink
+from schemas.fruits import FruitBase
 
 class Fruit(FruitBase, table=True):
     __tablename__ = 'fruits'

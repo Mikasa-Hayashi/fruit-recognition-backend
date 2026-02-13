@@ -2,8 +2,7 @@ from typing import Optional
 from sqlmodel import Field, Relationship, UniqueConstraint
 from datetime import datetime, timezone
 
-# from models.units import Unit
-from ..schemas.unit_translations import UnitTranslationBase
+from schemas.unit_translations import UnitTranslationBase
 
 class UnitTranslation(UnitTranslationBase, table=True):
     __tablename__ = 'unit_translations'

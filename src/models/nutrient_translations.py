@@ -2,8 +2,7 @@ from typing import Optional
 from sqlmodel import Field, Relationship, UniqueConstraint
 from datetime import datetime, timezone
 
-# from models.nutrients import Nutrient
-from ..schemas.nutrient_translations import NutrientTranslationBase
+from schemas.nutrient_translations import NutrientTranslationBase
 
 class NutrientTranslation(NutrientTranslationBase, table=True):
     __tablename__ = 'nutrient_translations'

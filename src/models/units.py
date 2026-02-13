@@ -2,9 +2,7 @@ from typing import Optional, List
 from datetime import datetime, timezone
 from sqlmodel import Field, Relationship
 
-# from models.nutrients import Nutrient
-# from models.unit_translations import UnitTranslation
-from ..schemas.units import UnitBase
+from schemas.units import UnitBase
 
 class Unit(UnitBase, table=True):
     __tablename__ = 'units'

@@ -2,8 +2,7 @@ from typing import Optional
 from sqlmodel import Field, Relationship, UniqueConstraint
 from datetime import datetime, timezone
 
-# from models.fruits import Fruit
-from ..schemas.fruit_translations import FruitTranslationBase
+from schemas.fruit_translations import FruitTranslationBase
 
 class FruitTranslation(FruitTranslationBase, table=True):
     __tablename__ = 'fruit_translations'
