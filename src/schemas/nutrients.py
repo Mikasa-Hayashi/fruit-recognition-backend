@@ -6,6 +6,7 @@ from typing import Optional
 class NutrientBase(SQLModel):
     slug: str = Field(index=True, unique=True)
     category: str
+    rda: float
 
 
 class NutrientCreate(NutrientBase):
@@ -15,6 +16,7 @@ class NutrientCreate(NutrientBase):
 class NutrientUpdate(SQLModel):
     slug: Optional[str] = None
     category: Optional[str] = None
+    rda: Optional[float] = None
 
 
 class NutrientRead(NutrientBase):

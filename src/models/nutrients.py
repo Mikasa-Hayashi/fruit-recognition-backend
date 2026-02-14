@@ -12,13 +12,8 @@ class Nutrient(NutrientBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     unit_id: int = Field(foreign_key='units.id')
 
-    created_at: datetime = Field(
-        default_factory=lambda: datetime.now(timezone.utc)
-    )
-
-    updated_at: datetime = Field(
-        default_factory=lambda: datetime.now(timezone.utc)
-    )
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc).replace(tzinfo=None))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc).replace(tzinfo=None))
 
     translations: List['NutrientTranslation'] = Relationship(back_populates='nutrient')
     fruits: List['Fruit'] = Relationship(

@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str
     MODEL_PATH: str
     TRUSTED_TOKEN: str
+    SEED_PATH: str
 
     class Config:
         env_file = '.env'
